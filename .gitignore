@@ -1,0 +1,30 @@
+# Ambiente virtual
+.venv/
+venv/
+env/
+
+# Variáveis de ambiente 
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+*.egg
+build/
+dist/
+
+# Editor / IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+#Banco de dados
+*.db
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
