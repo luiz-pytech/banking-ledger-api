@@ -28,8 +28,9 @@ class AccountNotActiveError(Exception):
     """Raised when trying to perform an action on an inactive account."""
     pass
 
-class AccountNotOwnedByUserError(Exception):
-    """Raised when trying to access an account that is not owned by the user."""
+
+class InvalidAccountTypeError(Exception):
+    """Raised when an invalid account type is provided."""
     pass
 
 # Exceptions keyspix

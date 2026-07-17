@@ -8,10 +8,12 @@ from sqlalchemy import select, func
 from app.models.account import Account
 from app.models.ledger import Ledger
 from app.services.users import get_user_by_id
-from app.utils.exceptions import AccountAlreadyExistsError, AccountNotFoundError
+from app.utils.exceptions import AccountAlreadyExistsError, AccountNotFoundError, InvalidAccountTypeError
 
 MAX_TENTATIVAS = 5
 logger = logging.getLogger(__name__)
+
+VALID_ACCOUNT_TYPES = ["current", "savings"]
 
 
 def _generate_unique_account_number(db: Session) -> str:
@@ -23,6 +25,10 @@ def _generate_unique_account_number(db: Session) -> str:
     raise RuntimeError("Não foi possível gerar número de conta único após várias tentativas.")
 
 def create_account(db: Session, user_id: uuid.UUID, type_account: str) -> Account:
+    if type_account not in VALID_ACCOUNT_TYPES:
+        logger.error("Invalid account type provided: %s", type_account)
+        raise InvalidAccountTypeError(f"Tipo de conta inválido: {type_account}. Deve ser 'current' ou 'savings'.")
+    
     user = get_user_by_id(db, user_id)
     new_account = Account(
         user_id=user.id,
