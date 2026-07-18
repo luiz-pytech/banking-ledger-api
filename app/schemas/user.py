@@ -35,3 +35,7 @@ class UserDelete(BaseModel):
 class UserLogin(BaseModel):
     email: EmailStr
     password: str = Field(min_length=8)
+
+class PasswordChange(BaseModel):
+    old_password: str = Field(min_length=8)
+    new_password: str = Field(min_length=8)
