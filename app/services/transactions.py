@@ -17,6 +17,7 @@ from app.utils.exceptions import (
     InvalidTransactionAmountError,
     SelfTransferError,
     TransactionIntegrityError,
+    TransactionNotFoundError,
 )
 
 logger = logging.getLogger(__name__)
@@ -330,3 +331,10 @@ def create_withdrawal(
             "Não foi possível concluir o saque devido a um erro de integridade."
         ),
     )
+
+def get_transaction_by_id(db: Session, transaction_id: uuid.UUID) -> Transaction:
+    transaction = db.get(Transaction, transaction_id)
+    if not transaction:
+        logger.error("Transaction with ID %s not found.", transaction_id)
+        raise TransactionNotFoundError(f"Transaction with ID {transaction_id} not found.")
+    return transaction

@@ -45,3 +45,14 @@ class TransferRequest(BaseModel):
         if origin is not None and v == origin:
             raise ValueError("account_origin_id e account_destination_id não podem ser iguais")
         return v
+
+class DepositRequest(BaseModel):
+    account_destination_id: uuid.UUID
+    value: Decimal = Field(gt=0)
+    idempotency_key: str = Field(min_length=8, max_length=255)
+
+
+class WithdrawalRequest(BaseModel):
+    account_origin_id: uuid.UUID
+    value: Decimal = Field(gt=0)
+    idempotency_key: str = Field(min_length=8, max_length=255)

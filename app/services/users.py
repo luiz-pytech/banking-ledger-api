@@ -1,10 +1,11 @@
 import uuid, logging
 
 from sqlalchemy.orm import Session
-from sqlalchemy import select
+from sqlalchemy import select, update
 from sqlalchemy.exc import IntegrityError
 
 from app.models.user import User
+from app.models.account import Account
 from app.schemas.user import UserCreate, UserUpdate
 from app.utils.hashing import hash_password, verify_password
 from app.utils.exceptions import UserAlreadyExistsError, UserNotFoundError, InvalidCredentialsError, UserInactiveError
@@ -95,15 +96,18 @@ def change_password(
 
 def deactivate_user(db: Session, user_id: uuid.UUID) -> None:
     user = get_user_by_id(db, user_id)
-    if user.status != "inactive":
-        user.status = "inactive"
-        db.commit()
+    if user.status == "inactive":
+        logger.info("User %s already inactive, no-op.", user_id)
+        return
 
-    else:
-        logger.warning("Attempted to deactivate user %s who is already inactive.", user_id)
-        raise UserInactiveError("Usuário já está inativo.")
-
-    #TODO: PROPAGAR BLOQUEIO DE CONTA DO USUÁRIO PARA TODAS AS CONTAS ASSOCIADAS A ELE
-
-
-
+    user.status = "inactive"
+    result = db.execute(
+        update(Account)
+        .where(Account.user_id == user_id, Account.status != "closed")
+        .values(status="blocked")
+    )
+    db.commit() 
+    logger.info(
+        "User %s deactivated and %d associated accounts blocked.",
+        user_id, result.rowcount, # type: ignore
+    ) 

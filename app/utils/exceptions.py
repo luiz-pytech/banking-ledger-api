@@ -63,5 +63,9 @@ class TransactionIntegrityError(Exception):
     """Raised when a transaction fails due to integrity constraints."""
     pass
 
+class TransactionNotFoundError(Exception):
+    """Raised when a transaction is not found."""
+    pass
+
 
 

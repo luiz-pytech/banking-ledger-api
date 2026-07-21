@@ -74,3 +74,9 @@ def list_keys_by_account(db: Session, account_id: uuid.UUID) -> list[KeysPix]:
     logger.info("Found %d Pix keys for account ID %s.", len(keys), account_id)
     return list(keys)
 
+def get_pix_key_by_id(db: Session, key_id: uuid.UUID) -> KeysPix:
+    command = select(KeysPix).where(KeysPix.id == key_id)
+    key = db.execute(command).scalar_one_or_none()
+    if not key:
+        raise PixKeyNotFoundError(f"Pix key with ID {key_id} not found.")
+    return key

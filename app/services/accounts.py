@@ -85,5 +85,18 @@ def get_accounts_by_user(db: Session, user_id: uuid.UUID) -> list[Account]:
     logger.info("Found %d accounts for user ID %s.", len(accounts), user_id)
     return list(accounts)
 
+def get_statement(db: Session, account_id: uuid.UUID) -> list[Ledger]:
+    get_account_by_id(db, account_id)  # levanta AccountNotFoundError se não existir
+
+    command = (
+        select(Ledger)
+        .where(Ledger.account_id == account_id)
+        .order_by(Ledger.created_at.desc())
+    )
+    ledgers = db.execute(command).scalars().all()
+
+    logger.info("Found %d ledger entries for account ID %s.", len(ledgers), account_id)
+    return list(ledgers)
+
 
 
