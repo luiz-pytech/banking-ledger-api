@@ -1,0 +1,142 @@
+.auth-page {
+  background: var(--color-bg);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form,
+.register-form {
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border);
+  border-radius: 12px;
+  padding: 2rem;
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+}
+
+.register-form {
+  width: 360px;
+}
+
+.icon-titleform {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.75rem;
+}
+
+.icon {
+  font-size: 22px;
+  color: var(--color-primary);
+}
+
+.title-form {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.login-form h3,
+.register-form h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 4px;
+  color: var(--color-text-primary);
+}
+
+.login-form p,
+.register-form p {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin: 0 0 1.5rem;
+}
+
+.label-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.label-input label {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-bottom: 4px;
+}
+
+.label-input input {
+  border: 0.5px solid var(--color-border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  background: var(--color-bg);
+}
+
+.label-input input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.submit-button {
+  background: var(--color-primary);
+  border: none;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.submit-button:hover {
+  opacity: 0.9;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+  box-sizing: border-box;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+}
+.error-message {
+  color: var(--color-error);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.login-form p.auth-switch,
+.register-form p.auth-switch {
+  text-align: center;
+  color: var(--color-text-muted);
+  margin: 1rem 0 0;
+}
+
+.auth-switch a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
