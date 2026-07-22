@@ -1,0 +1,54 @@
+.account-card {
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.account-card-highlight {
+  background: var(--color-primary);
+  border: none;
+}
+
+.account-card-label {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin: 0 0 6px;
+}
+
+.account-card-highlight .account-card-label {
+  color: var(--color-primary-text-on-dark);
+}
+
+.account-card-balance {
+  font-size: 28px;
+  font-weight: 500;
+  margin: 0 0 1.25rem;
+  color: var(--color-text-primary);
+}
+
+.account-card-highlight .account-card-balance {
+  color: #FFFFFF;
+}
+
+.account-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.account-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #FFFFFF;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.account-action-accent {
+  background: var(--color-accent);
+}
