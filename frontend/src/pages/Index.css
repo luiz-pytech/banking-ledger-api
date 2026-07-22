@@ -1,0 +1,146 @@
+.landing-page {
+  background: var(--color-bg);
+  min-height: 100vh;
+  padding: 3rem 2rem;
+}
+
+.landing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto 4rem;
+}
+
+.landing-header .icon-titleform {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.landing-header .icon {
+  color: var(--color-primary);
+  display: flex;
+}
+
+.landing-header .title-form {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 0.5px solid var(--color-border);
+  color: var(--color-text-primary);
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  border: none;
+  color: #FFFFFF;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-large {
+  padding: 12px 24px;
+  font-size: 15px;
+}
+
+.hero {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 32px;
+  font-weight: 500;
+  margin: 0 0 1rem;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+}
+
+.hero p {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  margin: 0 0 2rem;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 4rem auto 0;
+}
+
+.feature-card {
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.feature-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.feature-icon-teal {
+  background: var(--color-primary-light);
+  color: var(--color-primary-text);
+}
+
+.feature-icon-amber {
+  background: var(--color-warning-light);
+  color: var(--color-warning-text);
+}
+
+.feature-icon-coral {
+  background: #FCE4EE;
+  color: #B23A6B;
+}
+
+.feature-title {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 0 4px;
+  color: var(--color-text-primary);
+}
+
+.feature-description {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .features {
+    grid-template-columns: 1fr;
+  }
+}
