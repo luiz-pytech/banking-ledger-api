@@ -1,0 +1,22 @@
+.deposit-layout,
+.withdraw-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+}
+
+.deposit-content,
+.withdraw-content {
+  background: var(--color-bg);
+  padding: 2rem 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start
+}
+
+@media (max-width: 700px) {
+  .deposit-layout,
+  .withdraw-layout {
+    grid-template-columns: 1fr;
+  }
+}

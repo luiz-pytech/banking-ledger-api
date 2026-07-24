@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import './ActionsForms.css'
 
 const WithdrawCard = () => {
+  const [value, setValue] = useState('')
   return (
     <form className="withdraw-form">
         <h3>Sacar</h3>
@@ -26,3 +28,5 @@ const WithdrawCard = () => {
         
   )
 }
+
+export default WithdrawCard

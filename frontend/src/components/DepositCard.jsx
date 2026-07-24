@@ -15,6 +15,9 @@ const formDeposit = () => {
 }
 
 const DepositCard = () => {
+    const [account, setAccount] = useState('')
+    const [value, setValue] = useState('')
+    
   return (
     <form className="deposit-form">
         <h3>Depositar</h3>
