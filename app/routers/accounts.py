@@ -9,7 +9,7 @@ from app.database import get_db
 from app.core.security import get_current_user
 from app.core.permissions import ensure_account_belongs_to_user
 
-from app.services.accounts import create_account, get_accounts_by_user, get_account_by_id, get_balance
+from app.services.accounts import create_account, get_accounts_by_user, get_account_by_id, get_balance, get_account_by_number
 from app.utils.exceptions import InvalidAccountTypeError, AccountAlreadyExistsError, AccountNotFoundError
 
 
@@ -49,3 +49,12 @@ def get_account_balance(account_id: uuid.UUID, db: Session = Depends(get_db), us
     ensure_account_belongs_to_user(account, user)
     balance = get_balance(db, account_id)
     return {"account_id": account.id, "balance": balance}
+
+@router.get("/{number_accounts}", response_model=AccountResponse, status_code=200)
+def fetch_account_by_number(number_account: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
+    try:
+        account = get_account_by_number(db, number_account)
+    except AccountNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+    return account

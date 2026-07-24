@@ -78,6 +78,17 @@ def get_account_by_id(db: Session, account_id: uuid.UUID) -> Account:
     logger.info("Account with ID %s found for user ID %s.", account_id, account.user_id)
     return account
 
+def get_account_by_number(db: Session, number_account: str) -> Account:
+    command = select(Account).where(Account.number_account == number_account)
+    account = db.execute(command).scalar_one_or_none()
+
+    if not account:
+        logger.error("Account with number %s not found.", number_account)
+        raise AccountNotFoundError(f"Account with number {number_account} not found.")
+
+    logger.info("Account with number %s found for user ID %s.", number_account, account.user_id)
+    return account
+
 def get_accounts_by_user(db: Session, user_id: uuid.UUID) -> list[Account]:
     command = select(Account).where(Account.user_id == user_id)
     accounts = db.execute(command).scalars().all()
